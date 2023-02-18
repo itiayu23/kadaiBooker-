@@ -1,0 +1,13 @@
+<h1>Book detail</h1>
+<div>
+  <p>投稿ユーザー画像</p>
+  <p>ユーザー名</p>
+  <p><%= link_to book_path(book.id) do %>
+    <%= @book.title %>
+    <% end %></p>
+  <p><%= @book.opinion %></p>
+  <p>Edit</p>
+  <p>Destroy</p>
+  
+  
+</div>

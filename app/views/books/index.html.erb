@@ -1,0 +1,25 @@
+<h1>User info</h1>
+<li>name</li>
+<li>introduction</li>
+
+<h1>New book</h1>
+<%= form_with model: @book do |f| %>
+
+<h4>Title</h4>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_area :opinion %>
+
+<%= f.submit 'Create Book' %>
+
+<% end %>
+
+<h1>Books</h1>
+<% @books.each do |book| %>
+<div>
+  <p><%= image_tag 'no_image.jpg' %></p>
+  <p>Title:<%= book.title %></p>
+  <p>Opinion:<%= book.opinion %></p>
+ 
+</div>
+<% end %>
