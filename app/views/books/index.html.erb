@@ -1,6 +1,8 @@
 <h1>User info</h1>
-<li>name</li>
-<li>introduction</li>
+<div>
+<h3>name</h3>
+<h3>introduction</h3>
+</div>
 
 <h1>New book</h1>
 <%= form_with model: @book do |f| %>
@@ -15,11 +17,24 @@
 <% end %>
 
 <h1>Books</h1>
+<table>
+<tr>
+  <th> </th>
+  <th>Title</th>
+  <th>Opinion</th>
+</tr>
+
+
 <% @books.each do |book| %>
 <div>
-  <p><%= image_tag 'no_image.jpg' %></p>
-  <p>Title:<%= book.title %></p>
-  <p>Opinion:<%= book.opinion %></p>
+  <tr>
+  <td><%= image_tag 'no_image.jpg' %></td>
+  <td><%= link_to book_path(book.id) do %>
+  <%= book.title %></td>
+  <% end %>
+  <td><%= book.opinion %></td>
+  </tr>
  
 </div>
 <% end %>
+</table>
