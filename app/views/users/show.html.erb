@@ -1,18 +1,24 @@
-<h1>User info</h1>
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <table>
+<%= render 'books/list', books: @books %>
+
+<h1>Books</h1>
+<table>
 <tr>
-<td>name</td>
-<td><%= @user.name %></td>
+  <th> </th>
+  <th>Title</th>
+  <th>Opinion</th>
 </tr>
 
-<tr>
-<td>introduction</td>
-<td><%= @user.introduction %></td>
-</tr>
+
+<% @books.each do |book| %>
+<div>
+  <tr>
+  <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+  <td><%= link_to book_path(book.id) do %>
+  <%= book.title %></td>
+  <% end %>
+  <td><%= book.opinion %></td>
+  </tr>
 
 </div>
+<% end %>
 </table>
-
-<p><%= link_to "edit", edit_user_path(@user) %></p>
