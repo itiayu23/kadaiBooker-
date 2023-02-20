@@ -33,15 +33,18 @@
       <li class="nav-item">
         <%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-light' %>
       </li>
+      
+   
+      
       <li class="nav-item">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
       </li>
     <% else %>
       <li class="nav-item">
-        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-light' %>
       </li>
       <li class="nav-item">
-        <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
+        <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
       </li>
     <% end %>
   </ul>
@@ -50,10 +53,22 @@
       </nav>
 
   </header>
+  <div>
+  <%= flash[:notice] %>
+</div>
+
    <main class="mb-auto">
+     
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      
 
 
     <%= yield %>
+    </div>
+    </div>
+    </div>
     </main>
     <footer>
       <div class="container mt-5">
