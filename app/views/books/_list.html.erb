@@ -1,25 +1,29 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <h1>User info</h1>
 <div>
-  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= image_tag user.get_profile_image(100,100) %>
   <table>
 <tr>
 <td>name</td>
-<td><%= @user.name %></td>
+<td><%= user.name %></td>
 </tr>
 
 <tr>
 <td>introduction</td>
-<td><%= @user.introduction %></td>
+<td><%= user.introduction %></td>
 </tr>
 
 </div>
 </table>
 
-<p><%= link_to "edit", edit_user_path(@user) %></p>
+<p><%= link_to "edit", edit_user_path(user) %></p>
 
 
 <h1>New book</h1>
-<%= form_with model: @book do |f| %>
+<%= form_with model: book do |f| %>
 
 <h4>Title</h4>
 <%= f.text_field :title %>
