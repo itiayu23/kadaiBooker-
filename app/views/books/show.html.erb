@@ -1,28 +1,46 @@
-<%= render 'books/list', book: @books, user: @user %>
-<div class="container">
+<div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md-8 offset-md-1">
-      
+    
    
+    
+
+
+<%= render 'books/list', book: @books, user: @user %>
+
+    <div class="col-md-8 offset-md-1">
+
+
 <h2>Book detail</h2>
 <table class="table">
   <tbody>
- <tr> 
+ <tr>
   <td>
+    <%= link_to user_path(@user.id) do %>
+    
     <%= image_tag @user.get_profile_image(100,100) %>
   <br>
-  <%= link_to @user.name, user_path(@user.id) %>
+  <%= @user.name %>
+  <% end %>
   </td>
   <td><%= link_to book_path(@book.id) do %>
     <%= @book.title %>
     <% end %></td>
   <td><%= @book.body %></td>
+
+  <% if @book.user == current_user %>
+
   <td><%= link_to edit_book_path(@book.id), class: "btn btn-sm btn-success" do %>
   Edit<% end %></td>
   <td><%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" do %>
   Destroy<% end %></td>
-  
+
+  <% else %>
+  <td></td>
+  <td></td>
+  <% end %>
+
   </tr>
+
  </tbody>
 </table>
  </div>
