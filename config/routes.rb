@@ -12,7 +12,9 @@ resources :books do
 
 resources :users do
  resource :relationships, only: [:create, :destroy]
+ # フォローする
  get 'followings' => 'relationships#followings', as: 'followings'
+ # フォローされる
  get 'followers' => 'relationships#followers', as: 'followers'
 
 end
