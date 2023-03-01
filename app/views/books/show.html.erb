@@ -5,7 +5,7 @@
     
 
 
-<%= render 'books/list', book: @books, user: @user %>
+<%= render 'books/list', book: @book_new, user: @user %>
 
     <div class="col-md-8 offset-md-1">
 
@@ -30,21 +30,8 @@
     
   <td><%= @book.body %></td>
   
-   <td>
-        <% if @book.favorited_by?(current_user) %>
-              <p>
-              <%= link_to book_favorites_path(@book), method: :delete, class: "text-danger" do %>
-              <i class="fas fa-heart"></i><%= @book.favorites.count %>
-              <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to book_favorites_path(@book), method: :post do %>
-               <i class="fas fa-heart"></i><%= @book.favorites.count %>
-              <% end %>
-              </p>
-            <% end %>
-       
+      <td class="favorites_button_<%= @book.id %>">
+        <%= render 'favorites/favorite-btn', book: @book %>
       </td>
       
        <td>

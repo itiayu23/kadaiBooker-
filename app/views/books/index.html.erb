@@ -1,12 +1,12 @@
 <div class="container px-5 px-sm-0">
 
-           <% if @book.errors.any? %>
+           <% if @book_new.errors.any? %>
             <div id="error_explanation">
               <h3>
-            <%= @book.errors.count %>errors prohibited this obj from being saved:
+            <%= @book_new.errors.count %>errors prohibited this obj from being saved:
             </h3>
             <ul>
-              <%@book.errors.full_messages.each do |message| %>
+              <%@book_new.errors.full_messages.each do |message| %>
               <li><%= message %></li>
               <% end %>
             </ul>
@@ -15,7 +15,7 @@
 
 
     <div class="row">
-  <%= render 'list', book: @book, user: @user %>
+  <%= render 'list', book: @book_new, user: @user %>
 
     <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
@@ -45,20 +45,8 @@
         <td><%= book.body %></td>
 
 
-        <td>
-         <% if book.favorited_by?(current_user) %>
-          <p>
-          <%= link_to book_favorites_path(book), method: :delete, class: "text-danger" do %>
-          <i class="fas fa-heart"></i><%= book.favorites.count %>
-          <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to book_favorites_path(book), method: :post do %>
-          <i class="fas fa-heart"></i><%= book.favorites.count %>
-          <% end %>
-          </p>
-         <% end %>
+        <td class="favorites_button_<%= book.id %>">
+          <%= render 'favorites/favorite-btn', book: book %>
         </td>
 
 
