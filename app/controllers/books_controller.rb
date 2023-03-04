@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   def index
     @books = Book.all
+    @books = Books.all.order(created_at: :desc)
     @book_new = Book.new
     @user = current_user
     @book_comment = BookComment.new
