@@ -1,7 +1,16 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
-    @books = Books.all.order(created_at: :desc)
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+      # ★レビュー追加後
+    # elsif params[:star_count]
+    #   @books = Book.star_count
+    else
+      @books = Book.all
+    end
+    
     @book_new = Book.new
     @user = current_user
     @book_comment = BookComment.new

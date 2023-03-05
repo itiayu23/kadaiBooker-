@@ -20,6 +20,13 @@
 
     <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
+      
+      <p>
+        <%= link_to '新しい順', books_path(latest: "true") %>
+        |<%= link_to '古い順', books_path(old: "true")%>
+        <!--|%= link_to '', books_path(star_count: "true") %-->
+      </p>
+      
       <table class="table table-hover table-inverse">
       <thead>
       <tr>
@@ -52,7 +59,7 @@
 
 
         <td><%= link_to "コメント数: #{book.book_comments.count} ", book_path(book.id) %></td>
-
+        <td><%= l book.created_at %></td>
         </tr>
 
       </tbody>
