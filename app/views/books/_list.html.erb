@@ -74,7 +74,9 @@
   <%= f.select :category, [["小説","novel"],["ビジネス書・参考書","business"],["漫画・雑誌・その他","comic"]], include_blank: "どの投稿" %>
 </div>
 
-<!--タグ追加-->
+
+
+<!--タグ選ぶ-->
 <div class="form-group">
   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
   <div class="form-check">
@@ -84,6 +86,14 @@
     <% end %>
   </div>
   <% end %>
+</div>
+
+<!--タグ追加-->
+<div class="form-tag">
+<%= form_tag({controller:"books",action:"index"}, method: :get) do %>
+<%= text_field_tag :tag %>
+<%= submit_tag 'タグ追加' %>
+<% end %>
 </div>
 <!--ここまで-->
 

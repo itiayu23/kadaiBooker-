@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
 
            <% if @book_new.errors.any? %>
-           
+
             <div id="error_explanation">
               <h3>
             <%= @book_new.errors.count %>errors prohibited this obj from being saved:
@@ -19,17 +19,23 @@
   <%= render 'list', book: @book_new, user: @user %>
 
     <div class="col-md-8 offset-md-1">
-      
-      
+
+<%= form_tag({controller:"books",action:"index"}, method: :get) do %>
+<% Tag.all.each do |t| %>
+      <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+      <% end %>
+      <%= submit_tag '検索' %>
+      <% end %>
+
       <h1>Books</h1>
-      
+
       <p>
         <%= link_to '新しい順', books_path(latest: "true") %>
         |<%= link_to '古い順', books_path(old: "true")%>
         <!--|%= link_to '', books_path(star_count: "true") %-->
       </p>
-     <%= render 'index', books: @books %> 
-     
+     <%= render 'index', books: @books %>
+
    </div>
   </div>
 </div>

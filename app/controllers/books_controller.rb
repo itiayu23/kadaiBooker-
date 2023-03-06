@@ -22,6 +22,21 @@ end
     #   @books = Book.star_count
     else
       @books = Book.all
+    
+      # タグのAND検索
+      if params[:tag_ids]
+        @books = []
+        params[:tag_ids].each do |key, value|
+          if value == "1"
+            tag_books = Tag.find_by(name: key).books
+            @books = @books.empty? ? tag_books : @books & tag_books
+          end
+        end
+      end
+      # ここまで
+    end
+    if params[:tag]
+      Tag.create(name: params[:tag])
     end
     
     @book_new = Book.new
@@ -31,6 +46,7 @@ end
  end
 
   def create
+    
     @book_new = Book.new(book_params)
     @book_new.user_id = current_user.id
   if @book_new.save
