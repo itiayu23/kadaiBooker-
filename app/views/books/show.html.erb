@@ -29,6 +29,11 @@
     </td>
     
   <td><%= @book.body %></td>
+  <td>
+          <% @book.tags.each do |tag| %>
+          <span><%= tag.name %></span>
+          <% end %>
+        </td>
   
       <td class="favorites_button_<%= @book.id %>">
         <%= render 'favorites/favorite-btn', book: @book %>

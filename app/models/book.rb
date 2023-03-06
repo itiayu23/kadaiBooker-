@@ -3,7 +3,11 @@ class Book < ApplicationRecord
    has_one_attached :image
    has_many :book_comments, dependent: :destroy
    has_many :favorites, dependent: :destroy
-
+  # booksテーブルから中間テーブルに対する関連付け
+   has_many :book_tag_relations, dependent: :destroy
+  # booksテーブルから中間テーブルを介してTagsテーブルへの関連付け
+   has_many :tags, through: :book_tag_relations, dependent: :destroy
+   
    validates :title, presence: true
    validates :body, presence: true, length:{maximum:200} 
    

@@ -72,8 +72,20 @@
 <!--カテゴリーの記述-->
 <div class="form-group">
   <%= f.select :category, [["小説","novel"],["ビジネス書・参考書","business"],["漫画・雑誌・その他","comic"]], include_blank: "どの投稿" %>
-  
 </div>
+
+<!--タグ追加-->
+<div class="form-group">
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+  <div class="form-check">
+    <%= tag.label class: 'form-check-label' do %>
+    <%= tag.check_box class: 'form-check-input' %>
+    <%= tag.text %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<!--ここまで-->
 
 <div class="form-group">
 <%= f.submit 'Create Book', class: "btn btn-success" %>
@@ -87,16 +99,16 @@
 
  <script>
   $('#star').empty();
-  
+
   $('#star').raty({
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    
-    
-    scoreName: 'book[star]',  
-    half: false,   
-  });     
+
+
+    scoreName: 'book[star]',
+    half: false,
+  });
  </script>
  <!--ここまで評価-->
 <% end %>
