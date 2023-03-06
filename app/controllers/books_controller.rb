@@ -1,5 +1,18 @@
 class BooksController < ApplicationController
-  def index
+  # カテゴリー分けに関するところのみ記載
+  def comic
+    @comics = Book.where(category:"comic")
+  end
+
+def business
+  @businesses = Book.where(category:"business")
+end
+
+def novel
+  @novels = Book.where(category:"novel")
+end
+
+ def index
     if params[:latest]
       @books = Book.latest
     elsif params[:old]
@@ -15,7 +28,7 @@ class BooksController < ApplicationController
     @user = current_user
     @book_comment = BookComment.new
 
-  end
+ end
 
   def create
     @book_new = Book.new(book_params)
@@ -65,7 +78,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :category)
   end
 
 

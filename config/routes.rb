@@ -5,6 +5,11 @@ root to: "homes#top"
 get "home/about" => "homes#about"
 get "search" => "searches#search"
 
+# カテゴリー分けに関するところのみ記載
+get 'books/comic' => 'books#comic'
+get 'books/business' => 'books#business'
+get 'books/novel' => 'books#novel'
+
 resources :books do
   resource :favorites, only: [:create, :destroy]
   resources :book_comments, only: [:create, :destroy]
