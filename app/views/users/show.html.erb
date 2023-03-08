@@ -1,28 +1,30 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
+<%= link_to "DM index", rooms_path %>
+|
+<%= link_to "DM show", room_path %>
 
 
 <% unless @user.id == current_user.id %>
-
+<% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
 <% if @is_room == true %>
-<% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
-  <%= link_to 'chatを始める', room_path(@room_id), class: "btn btn-primary btn-lg" %>
-  <% end %>
-  
+
+ <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-primary btn-lg">チャットへ</a>
+
  <% else %>
 
  <%= form_for @room do |f| %>
  <%= fields_for @entry do |e| %>
 
- <% e.hidden_field :user_id, value: @user.id %>
+ <%= e.hidden_field :user_id, value: @user.id %>
  <% end %>
- <% f.submit "chatを始める", class:"btn btn-primary btn-lg" %>
+ <%= f.submit "chatを始める", class:"btn btn-primary btn-lg" %>
      <% end %>
 
    <% end %>
 
 <% end %>
-
+<% end %>
 <%= render 'books/list', book: @book, user: @user %>
 
 <div class="col-md-8 offset-md-1">

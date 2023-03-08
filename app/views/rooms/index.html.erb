@@ -11,8 +11,7 @@
               <% end %>
             </object>
             <div class="chat-user-name">
-              <%= entry.user.display_name %>
-              chat-text
+              <%= entry.user.name %>
               <%= Message.find_by(id: entry.room.message_ids.last)&.body %>
             </div>
           </div>
