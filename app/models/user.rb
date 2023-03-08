@@ -27,7 +27,7 @@ has_many :followers, through: :reverse_of_relationships, source: :follower
 
 # DMのアソシエーショん
 has_many :entries, dependent: :destroy
- has_many :messages, dependent: :destroy
+has_many :messages, dependent: :destroy
 
 
     # validates :name, length: {in: 2..20},

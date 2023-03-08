@@ -1,0 +1,40 @@
+
+<div class="left-button">
+  <%= link_to "ユーザー一覧に戻る", "/users/index",class:"edit-link" %>
+</div>
+
+<h2 class="title">
+    <%= ("#{@another_entry.user.email}さんとDM")%>
+  </h2>
+
+<% @messages.each do |m| %>
+  <% if m.user_id == current_user.id %>
+  <div class="自分のコメント">
+    <p>
+      <%= m.body %>
+    </p>
+  </div>
+  <% end %>
+  <% else %>
+  <div class="fukidasi">
+    <div class="ficeicon">
+      <%= image_tag m.user.email %>
+    </div>
+    <div class="chatting">
+      <div class="says">
+        <p>
+          <%= m.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="chat-form-box">
+  <%= form_for @message do |f| %>
+   <div class="chat-form-group">
+     <%= f.text_field :body %>
+     <%= f.hidden_field :room_id, :value => @room.id %>
+     <%= f.submit "送信する" %>
+   </div>
+   <% end %>
+</div>

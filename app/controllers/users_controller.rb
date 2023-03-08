@@ -9,23 +9,27 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
     # DM用コントローラー
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
+     
       unless @user.id == current_user.id
         @current_entry.each do |current|
           @another_entry.each do |another|
-            if current.room_id == another.room_id
+            if current.room_id == another.room_id then
+              @is_room = true
+              @room_id = current.room_id
             end
           end
         end
-        unless @is_room
+        if @is_room
+        else
           @room = Room.new
           @entry = Entry.new
         end
       end
       # ここまでDM
-      
     @books = @user.books
     @book = Book.new
   end
@@ -50,7 +54,7 @@ class UsersController < ApplicationController
 
 private
 def user_params
-  params.require(:user).permit(:name, :profile_image,:introduction)
+  params.require(:user).permit(:name, :profile_image, :introduction)
 end
 
 
