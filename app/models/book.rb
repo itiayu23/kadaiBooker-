@@ -7,6 +7,7 @@ class Book < ApplicationRecord
    has_many :book_tag_relations, dependent: :destroy
   # booksテーブルから中間テーブルを介してTagsテーブルへの関連付け
    has_many :tags, through: :book_tag_relations, dependent: :destroy
+   has_many :view_counts, dependent: :destroy
    
    validates :title, presence: true
    validates :body, presence: true, length:{maximum:200} 

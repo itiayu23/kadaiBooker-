@@ -29,6 +29,8 @@ has_many :followers, through: :reverse_of_relationships, source: :follower
 has_many :entries, dependent: :destroy
 has_many :messages, dependent: :destroy
 
+has_many :view_counts, dependent: :destroy
+
 
     # validates :name, length: {in: 2..20},
     validates :introduction, {length: {maximum:50} }
@@ -58,33 +60,33 @@ has_many :messages, dependent: :destroy
     def following?(user)
       followings.include?(user)
     end
-    
-    
-    
-    
+
+
+
+
     # 検索方法分岐
     def self.looks(search, word)
-      
+
       if search == "perfect_match"
         @user = User.where("name LIKE?", "#{word}")
-        
+
         elsif search == "forward_match"
           @user = User.where("name LIKE?","#{word}%")
-          
+
           elsif search == "backward_match"
             @user = User.where("name LIKE?", "%#{word}")
-            
+
             elsif search == "partial_match"
               @user = User.where("name LIKE?", "%#{word}%")
-              
+
             else
               @user = User.all
             end
           end
-              
-            
-        
-          
+
+
+
+
 
 
 

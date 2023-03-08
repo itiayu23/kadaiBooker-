@@ -39,6 +39,7 @@
   <th>Title</th>
   <th>Opinion</th>
   <th colspan="3"></th>
+  <th colspan="3"></th>
 </tr>
 </thead>
 
@@ -59,6 +60,11 @@
 
   <td><%= book.body %></td>
   <td><%= link_to"コメント数: #{book.book_comments.count} ",book_path(book.id) %></td>
+  <td>
+          <p class="view_count"><i class="far fa-chart-bar"></i>
+          <%= @book.view_counts.count %>
+          </p>
+        </td>
   </tr>
 
 </tbody>
