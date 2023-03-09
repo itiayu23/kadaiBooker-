@@ -1,0 +1,25 @@
+<h4>いいねランキング</h4>
+<!--配列の1つ目から順に1位、2位と表示される-->
+<% @book_favorite_ranks.each.with_index(1) do |book, i| %>
+
+
+
+<div>
+  <strong>
+第<%= i %>位
+</strong>
+
+<!--表示させたいカラムをご自由に-->
+<div>
+<%= link_to user_path(book.user.id) do %>
+
+        <%= image_tag book.user.get_profile_image(100,100) %>
+        <%= book.user.name %>
+        <% end %>
+</div>
+<div>
+<%= link_to book_path(book.id) do %>
+<%= book.title %>
+<% end %>
+</div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ranks/rank'
   get 'rooms/index'
   get 'rooms/show'
  devise_for :users
