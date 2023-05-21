@@ -16,7 +16,7 @@
       <tbody>
         <tr>
         <td><%= link_to user_path(book.user.id) do %>
-        <%= image_tag book.user.get_profile_image(100,100) %>
+        <%= image_tag book.user.get_profile_image(100,100), class: "mt-3 rounded-circle" %>
         <% end %>
         </td>
         <td><%= link_to book_path(book.id) do %>
